@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>DICETIDICE — Template carosello 4:5</title>
+<!--
+  TEMPLATE CAROSELLO (7 slide, 1080x1350).
+  Sostituisci i testi e le immagini segnaposto (assets/segnaposto-foto.svg),
+  poi esporta in PNG: node export.js templates/carosello.html out/
+  Struttura: 1 copertina · 2-3 contenuto + foto · 4 domanda/nostalgia · 5 contenuto + foto · 6 chiusura sul risultato · 7 invito ai commenti
+-->
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+  body { margin: 0; background: #444; display: flex; flex-direction: column; gap: 40px; align-items: center; padding: 40px 0; }
+</style>
+</head>
+<body>
+
+<!-- 1. COPERTINA (giallo) -->
+<section class="slide giallo">
+  <span class="tag" style="align-self:flex-start">Etichetta della serie</span>
+  <h1 class="titolo" style="font-size:112px; margin:44px 0 0">Titolo del carosello su due o tre righe</h1>
+  <img class="foto" src="../assets/segnaposto-foto.svg" style="height:560px; margin:auto 0 24px">
+  <div class="piede"><span>Scorri &rarr;</span><img src="../assets/logo-dicetidice.png" alt=""></div>
+</section>
+
+<!-- 2. CONTENUTO + FOTO (scuro) -->
+<section class="slide scuro">
+  <h2 class="titolo gioco" style="color:var(--giallo)">Titolo del punto</h2>
+  <p class="testo">Qui va il testo, con <span class="sottolineatura">una parola evidenziata</span>. Frasi corte, una idea per slide, come se parlassi a un amico al tavolo da gioco.</p>
+  <div class="blocco-foto"><img class="foto" src="../assets/segnaposto-foto.svg" style="height:520px"></div>
+  <div class="piede"><span>@dicetidice</span><img src="../assets/logo-dicetidice.png" alt=""></div>
+</section>
+
+<!-- 3. CONTENUTO + FOTO (bianco) -->
+<section class="slide bianco">
+  <h2 class="titolo gioco" style="font-size:88px">Titolo del punto</h2>
+  <p class="testo" style="font-size:40px"><span class="sottolineatura">Parola chiave</span>: spiegazione di tre o quattro righe che racconta il punto in modo semplice e diretto, senza gergo.</p>
+  <div class="blocco-foto" style="display:flex; justify-content:center"><img class="foto" src="../assets/segnaposto-foto.svg" style="width:auto; height:480px; aspect-ratio:4/3"></div>
+  <div class="piede"><span>@dicetidice</span><img src="../assets/logo-dicetidice.png" alt=""></div>
+</section>
+
+<!-- 4. DOMANDA / NOSTALGIA (giallo, foto verticale) -->
+<section class="slide giallo">
+  <span class="tag" style="align-self:flex-start">Ricordi?</span>
+  <h2 class="titolo" style="font-size:84px; margin:40px 0 0">Una domanda che fa tornare in mente qualcosa?</h2>
+  <div class="blocco-foto" style="display:flex; justify-content:center; margin-bottom:24px">
+    <img class="foto" src="../assets/segnaposto-foto.svg" style="width:auto; height:580px; aspect-ratio:4/5">
+  </div>
+  <div class="piede"><span>@dicetidice</span><img src="../assets/logo-dicetidice.png" alt=""></div>
+</section>
+
+<!-- 5. CONTENUTO + FOTO (scuro) -->
+<section class="slide scuro">
+  <h2 class="titolo gioco" style="color:var(--giallo); font-size:92px">Titolo su una o due righe</h2>
+  <p class="testo"><span class="sottolineatura">Parola chiave</span>: testo di cinque o sei righe che spiega il punto. Tieni le frasi corte e vai dritto al sodo, la battuta arriva dopo il dato.</p>
+  <div class="blocco-foto"><img class="foto" src="../assets/segnaposto-foto.svg" style="height:500px"></div>
+  <div class="piede"><span>@dicetidice</span><img src="../assets/logo-dicetidice.png" alt=""></div>
+</section>
+
+<!-- 6. CHIUSURA SUL RISULTATO (bianco, oggetto in primo piano) -->
+<section class="slide bianco">
+  <span class="tag" style="align-self:flex-start">Etichetta</span>
+  <h2 class="titolo" style="font-size:68px; margin:40px 0 0">Frase conclusiva su quattro o cinque righe, con il colpo di scena.</h2>
+  <div class="blocco-foto" style="margin:20px 0 24px; display:flex; justify-content:center"><img class="foto" src="../assets/segnaposto-foto.svg" style="width:auto; height:610px; aspect-ratio:1/1"></div>
+  <div class="piede"><span>@dicetidice</span><img src="../assets/logo-dicetidice.png" alt=""></div>
+</section>
+
+<!-- 7. INVITO AI COMMENTI (giallo) -->
+<section class="slide giallo">
+  <img src="../assets/logo-dicetidice.png" alt="DICETIDICE" style="width:340px; height:340px; align-self:center; margin-top:10px">
+  <h2 class="titolo" style="font-size:80px; text-align:center; margin:36px 0 36px">Domanda rivolta a chi legge?</h2>
+  <div style="background:var(--nero); border-radius:28px; padding:36px 40px; text-align:center">
+    <p class="titolo" style="font-size:80px; margin:0; color:var(--giallo)">Scrivilo nei commenti!</p>
+  </div>
+  <div class="piede" style="justify-content:center"><span>@dicetidice</span></div>
+</section>
+
+</body>
+</html>

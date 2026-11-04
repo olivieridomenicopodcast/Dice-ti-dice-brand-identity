@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <rect width="1200" height="800" fill="#B8B4AE"/>
+  <rect x="40" y="40" width="1120" height="720" rx="40" fill="none" stroke="#1C1B1A" stroke-width="6" stroke-dasharray="24 18"/>
+  <g transform="translate(600 360)" fill="#1C1B1A">
+    <rect x="-90" y="-90" width="180" height="180" rx="30" fill="#FEFCF3" stroke="#1C1B1A" stroke-width="8"/>
+    <circle cx="-45" cy="-45" r="14"/><circle cx="45" cy="-45" r="14"/><circle cx="0" cy="0" r="14"/><circle cx="-45" cy="45" r="14"/><circle cx="45" cy="45" r="14"/>
+  </g>
+  <text x="600" y="540" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="44" fill="#1C1B1A">Inserisci qui la tua immagine</text>
+</svg>

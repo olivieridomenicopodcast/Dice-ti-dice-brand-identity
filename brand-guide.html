@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DICETIDICE — Brand Guide</title>
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bianco); color: var(--nero); font-family: var(--font-testo); font-size: 18px; line-height: 1.55; }
+  header { background: var(--giallo); padding: 64px 24px; text-align: center; border-bottom: 6px solid var(--nero); }
+  header img { width: 220px; height: 220px; }
+  header h1 { font-family: var(--font-titoli); font-size: clamp(40px, 8vw, 84px); margin: 16px 0 4px; line-height: 1; }
+  header p { font-family: var(--font-fantasy); font-weight: 700; letter-spacing: .1em; margin: 0; text-transform: uppercase; }
+  main { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+  section { padding: 56px 0 8px; }
+  h2 { font-family: var(--font-titoli); font-size: 44px; margin: 0 0 8px; font-weight: 400; }
+  h3 { font-family: var(--font-fantasy); font-size: 20px; letter-spacing: .08em; text-transform: uppercase; margin: 28px 0 8px; }
+  .lead { max-width: 62ch; margin: 0 0 24px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+  .sw { border: 3px solid var(--nero); border-radius: 16px; overflow: hidden; background: #fff; }
+  .sw div { height: 110px; }
+  .sw p { margin: 0; padding: 12px 14px; font-size: 15px; }
+  .sw b { display: block; font-family: var(--font-fantasy); font-size: 16px; }
+  .sw code { font-size: 14px; }
+  .box { border: 3px solid var(--nero); border-radius: 16px; padding: 24px 28px; background: #fff; }
+  .specimen-t { font-family: var(--font-titoli); font-size: 64px; line-height: 1.05; margin: 0; }
+  .specimen-f { font-family: var(--font-fantasy); font-weight: 700; font-size: 32px; letter-spacing: .04em; margin: 0; }
+  .specimen-b { font-size: 20px; margin: 0; }
+  .meta { font-size: 14px; opacity: .7; margin: 4px 0 18px; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .si { border-left: 8px solid #2e9e4f; } .no { border-left: 8px solid var(--rosso); }
+  ul { padding-left: 20px; margin: 8px 0; }
+  .logo-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .logo-row .tile { width: 200px; height: 200px; display: grid; place-items: center; border: 3px solid var(--nero); border-radius: 16px; }
+  .logo-row img { width: 140px; height: 140px; }
+  .frase { background: var(--giallo); border: 3px solid var(--nero); border-radius: 16px; padding: 22px 26px; font-family: var(--font-titoli); font-size: 30px; margin: 10px 0; }
+  footer { text-align: center; padding: 32px; background: var(--antracite); color: var(--bianco); font-family: var(--font-fantasy); letter-spacing: .1em; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/logo-dicetidice.png" alt="Logo DICETIDICE">
+  <h1>Brand Guide</h1>
+  <p>Storie di giochi da tavolo, con una freddura di scorta</p>
+</header>
+
+<main>
+
+<section>
+  <h2>1. Chi siamo</h2>
+  <p class="lead"><b>DICETIDICE</b> racconta il mondo dei giochi da tavolo con curiosità e ironia. Il dado parlante è la nostra voce: sicuro di sé, un po' sfacciato, sempre pronto alla battuta.</p>
+  <div class="cols">
+    <div class="box"><h3 style="margin-top:0">Personalità</h3><ul><li>Ironica e freddurista</li><li>Curiosa e appassionata</li><li>Accessibile: niente snobismo da nerd</li></ul></div>
+    <div class="box"><h3 style="margin-top:0">Stile visivo</h3><ul><li>Fantasy / tavolo da gioco</li><li>Grafiche pulite, poche decorazioni</li><li>Pennarello + serif da manuale GDR</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>2. Logo</h2>
+  <p class="lead">Il dado parlante con il lettering a pennello è il marchio principale. Usalo sempre intero, con il disco giallo.</p>
+  <div class="logo-row">
+    <div class="tile" style="background:var(--bianco)"><img src="assets/logo-dicetidice.png" alt=""></div>
+    <div class="tile" style="background:var(--antracite)"><img src="assets/logo-dicetidice.png" alt=""></div>
+    <div class="tile" style="background:var(--pergamena)"><img src="assets/logo-dicetidice.png" alt=""></div>
+    <div class="tile" style="background:var(--giallo)"><img src="assets/logo-dicetidice.png" alt=""></div>
+  </div>
+  <div class="cols" style="margin-top:20px">
+    <div class="box si"><h3 style="margin-top:0">Si</h3><ul><li>Spazio libero attorno pari ad almeno 1/8 della larghezza</li><li>Su bianco, antracite, pergamena e giallo</li><li>Dimensione minima 84 px (avatar e piè di pagina)</li></ul></div>
+    <div class="box no"><h3 style="margin-top:0">No</h3><ul><li>Non deformarlo né ruotarlo</li><li>Non cambiare i colori del dado</li><li>Non coprire la faccia con testo</li></ul></div>
+  </div>
+  <p class="meta">File: <code>assets/logo-dicetidice.png</code> (disco trasparente, 1024 px) · <code>assets/logo-originale.png</code> (originale, sfondo crema)</p>
+</section>
+
+<section>
+  <h2>3. Colori</h2>
+  <p class="lead">Colori campionati dal logo. Il giallo è il protagonista, il nero fa da contrasto, il rosso è solo un accento.</p>
+  <div class="swatches">
+    <div class="sw"><div style="background:#FED805"></div><p><b>Giallo dado</b><code>#FED805</code><br>Colore guida, sfondi e evidenziazioni</p></div>
+    <div class="sw"><div style="background:#010101"></div><p><b>Nero pennarello</b><code>#010101</code><br>Testi e contorni</p></div>
+    <div class="sw"><div style="background:#1C1B1A"></div><p><b>Antracite</b><code>#1C1B1A</code><br>Sfondi scuri</p></div>
+    <div class="sw"><div style="background:#FEFCF3"></div><p><b>Bianco dado</b><code>#FEFCF3</code><br>Sfondi chiari e testo su scuro</p></div>
+    <div class="sw"><div style="background:#F1E4BD"></div><p><b>Pergamena</b><code>#F1E4BD</code><br>Citazioni, tono fantasy</p></div>
+    <div class="sw"><div style="background:#FB4848"></div><p><b>Rosso lingua</b><code>#FB4848</code><br>Accento raro, mai per testi lunghi</p></div>
+    <div class="sw"><div style="background:#B8B4AE"></div><p><b>Grigio ombra</b><code>#B8B4AE</code><br>Dettagli secondari</p></div>
+  </div>
+  <h3>Proporzioni consigliate</h3>
+  <p>60% giallo e neutri (bianco/antracite) · 30% nero · 10% pergamena e rosso. Il testo nero su giallo e il testo bianco su antracite hanno ottimo contrasto; evita il giallo su bianco per i testi.</p>
+</section>
+
+<section>
+  <h2>4. Tipografia</h2>
+  <p class="lead">Tre font gratuiti da Google Fonts. Ognuno ha un ruolo preciso.</p>
+  <div class="box"><p class="specimen-t">Titoli: Permanent Marker</p><p class="meta">Titoli, numeri grandi, freddure. Richiama il lettering a pennello del logo. Evita i numeri nei titoli molto grandi: usa Cinzel Black.</p>
+  <p class="specimen-f">Sottotitoli e citazioni: Cinzel</p><p class="meta">Peso 700/900, maiuscolo con spaziatura. Etichette (tag), citazioni, sottotitoli e piè di pagina. Dà il tocco da manuale di gioco di ruolo.</p>
+  <p class="specimen-b">Testo corrente: Nunito. Leggibile, amichevole, ideale per i paragrafi dei caroselli.</p><p class="meta" style="margin-bottom:0">Pesi 400, 600 e 800. Mai sotto i 40 px nelle slide 1080 px.</p></div>
+</section>
+
+<section>
+  <h2>5. Layout e componenti</h2>
+  <ul>
+    <li><b>Formato carosello:</b> 4:5 verticale, 1080 × 1350 px.</li>
+    <li><b>Margini:</b> 90 px; cornice sottile a 36 px dal bordo (richiamo carta da gioco).</li>
+    <li><b>Una idea per slide</b>, massimo 3-4 righe di testo.</li>
+    <li><b>Tag</b> in alto a sinistra (pillola Cinzel) per dire in che sezione siamo.</li>
+    <li><b>Evidenziatore:</b> una sola parola o frase per slide con la barra gialla.</li>
+    <li><b>Piè di pagina:</b> handle a sinistra, logo piccolo a destra.</li>
+    <li><b>Slide finale:</b> logo grande + invito a salvare e condividere.</li>
+  </ul>
+  <h3>Elementi ricorrenti</h3>
+  <p>Dadi e meeple (come icone semplici), pergamene e carte con bordi sottili. Usane <b>uno per slide</b>, senza appesantire.</p>
+  <p class="meta">Template pronto: <code>templates/carosello.html</code>. Esporta in PNG con <code>node export.js templates/carosello.html out/</code>.</p>
+</section>
+
+<section>
+  <h2>6. Tono di voce</h2>
+  <p class="lead">Ironico e freddurista, ma mai a spese dell'informazione: la battuta arriva dopo il dato, non al suo posto.</p>
+  <div class="cols">
+    <div class="box si"><h3 style="margin-top:0">Facciamo</h3><ul><li>Frasi corte, come parlando al tavolo</li><li>Freddura finale che peggiora tutto</li><li>Dati veri e fonti serie</li></ul></div>
+    <div class="box no"><h3 style="margin-top:0">Evitiamo</h3><ul><li>Gergo da addetti ai lavori senza spiegarlo</li><li>Battute che sminuiscono chi gioca</li><li>Troppi emoji e punti esclamativi</li></ul></div>
+  </div>
+  <h3>Esempi di freddure</h3>
+  <div class="frase">Il Monopoli? Un gioco dove tutti falliscono, tranne la banca.</div>
+  <div class="frase">Come si chiama un dado che racconta storie? Un dado-cumentario.</div>
+</section>
+
+</main>
+<footer>DICETIDICE · Brand Guide v1</footer>
+</body>
+</html>
