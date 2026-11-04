@@ -62,3 +62,16 @@
 .hl-rosso { color: var(--rosso); }
 
 .centro { margin: auto 0; }
+
+/* ---------- Componenti per caroselli con foto ---------- */
+.foto {
+  display: block; width: 100%; object-fit: cover; border-radius: 44px;
+  /* bordi sfumati e angoli tondi */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  mask-composite: intersect;
+}
+.gioco { font-size: 100px; margin: 0 0 30px; }
+.testo { font-size: 42px; line-height: 1.38; font-weight: 600; margin: 0 0 34px; }
+.blocco-foto { margin-top: auto; margin-bottom: 30px; }
