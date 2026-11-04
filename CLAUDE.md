@@ -36,5 +36,6 @@ L'app mostra "build N", dove N = numero di commit, così Niky capisce se ha la v
 **Prima di OGNI commit** esegui: `sh scripts/aggiorna-build.sh && git add app/build.js`. Non servono hook di git: lo script lo lanci a mano.
 
 ## Regole di lavoro
-- Sviluppa sul branch indicato dalla sessione, fai commit chiari e push. Non aprire pull request se non richiesto.
+- Sviluppa sul branch indicato dalla sessione, fai commit chiari e push.
+- **Pull request: Niky ha autorizzato (4 novembre 2026) a fare tutto da solo in questo repo.** Quando serve, apri la pull request, uniscila tu su `main` (con `merge_method: merge`, usando lo SHA vero del commit di testa, mai scritto a mano) e avvisa Niky quando l'app è online. Valido solo per questo repo; se la PR è già stata unita, riparti dalla `main` aggiornata e aprine una nuova.
 - Non cambiare i colori o i font fuori da `assets/brand.css`.
