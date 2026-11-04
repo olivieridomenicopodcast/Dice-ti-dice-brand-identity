@@ -1,0 +1,64 @@
+/* DICETIDICE — design tokens e componenti condivisi */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Cinzel:wght@500;700;900&family=Nunito:wght@400;600;800&display=swap');
+
+:root {
+  --giallo: #FED805;       /* Giallo dado — colore guida (campionato dal logo) */
+  --nero: #010101;         /* Nero pennarello */
+  --antracite: #1C1B1A;    /* Sfondi scuri */
+  --bianco: #FEFCF3;       /* Bianco dado */
+  --rosso: #FB4848;        /* Rosso lingua — solo accenti */
+  --pergamena: #F1E4BD;    /* Pergamena — sfondi "fantasy" */
+  --ombra: #B8B4AE;        /* Grigio ombra del dado */
+
+  --font-titoli: 'Permanent Marker', cursive;
+  --font-fantasy: 'Cinzel', serif;
+  --font-testo: 'Nunito', sans-serif;
+}
+
+/* ---------- Slide 4:5 (1080x1350) ---------- */
+.slide, .slide * { box-sizing: border-box; }
+.slide {
+  position: relative; width: 1080px; height: 1350px; overflow: hidden;
+  padding: 90px; display: flex; flex-direction: column;
+  font-family: var(--font-testo); color: var(--nero);
+}
+.slide.giallo { background: var(--giallo); color: var(--nero); }
+.slide.scuro  { background: var(--antracite); color: var(--bianco); }
+.slide.perg   { background: var(--pergamena); color: var(--antracite); }
+.slide.bianco { background: var(--bianco); color: var(--nero); }
+
+/* cornice sottile (richiamo carta da gioco) */
+.slide::before {
+  content: ''; position: absolute; inset: 36px; border: 4px solid currentColor;
+  border-radius: 28px; opacity: .9; pointer-events: none;
+}
+.slide.noframe::before { display: none; }
+
+.titolo   { font-family: var(--font-titoli); line-height: 1.02; letter-spacing: .01em; }
+.fantasy  { font-family: var(--font-fantasy); font-weight: 700; letter-spacing: .04em; }
+.corpo    { font-size: 56px; line-height: 1.4; font-weight: 600; }
+.sottolineatura {
+  display: inline-block; background: linear-gradient(transparent 62%, var(--giallo) 62% 92%, transparent 92%);
+}
+.scuro .sottolineatura { background: linear-gradient(transparent 62%, rgba(254,216,5,.45) 62% 92%, transparent 92%); }
+
+.tag {
+  display: inline-block; font-family: var(--font-fantasy); font-weight: 700; font-size: 28px;
+  letter-spacing: .14em; text-transform: uppercase; padding: 10px 22px;
+  border: 3px solid currentColor; border-radius: 999px;
+}
+.piede {
+  margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-fantasy); font-weight: 700; font-size: 26px; letter-spacing: .12em;
+}
+.piede img { width: 84px; height: 84px; }
+.numero {
+  font-family: var(--font-fantasy); font-weight: 900; font-size: 220px; line-height: .9; color: var(--giallo);
+  -webkit-text-stroke: 0;
+}
+.perg .numero, .bianco .numero { color: var(--nero); }
+.pips { display: grid; grid-template-columns: repeat(3, 26px); gap: 12px; }
+.pips i { width: 26px; height: 26px; border-radius: 50%; background: currentColor; }
+.hl-rosso { color: var(--rosso); }
+
+.centro { margin: auto 0; }
