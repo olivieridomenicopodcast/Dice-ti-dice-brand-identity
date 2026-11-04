@@ -31,6 +31,10 @@ Aggiungi un layout a `LAYOUTS` in `app/layouts.js` seguendo la struttura degli a
 - Aggiungi un esempio in `templates/` se utile. Se crei **file nuovi**, aggiungili alla lista `FILE` di `sw.js`; se cambi file esistenti non serve altro (la cache si aggiorna da sola).
 - Verifica con Playwright: nessun errore in console, anteprima corretta nei formati `carosello` e `reel`, export senza testi di esempio.
 
+## Numero di build (in fondo all'app, in basso a sinistra)
+L'app mostra "build N", dove N = numero di commit, così Niky capisce se ha la versione aggiornata (e l'app avvisa da sola se ne esiste una più nuova).
+**Prima di OGNI commit** esegui: `sh scripts/aggiorna-build.sh && git add app/build.js`. Non servono hook di git: lo script lo lanci a mano.
+
 ## Regole di lavoro
 - Sviluppa sul branch indicato dalla sessione, fai commit chiari e push. Non aprire pull request se non richiesto.
 - Non cambiare i colori o i font fuori da `assets/brand.css`.

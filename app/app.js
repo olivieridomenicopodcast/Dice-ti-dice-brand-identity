@@ -3,6 +3,7 @@ import { FORMATI, readBrand, temi, loadFonts } from './render.js';
 import { LAYOUTS, LAYOUT_BY_ID, renderSlide } from './layouts.js';
 import { zipStore } from './zip.js';
 import { fotoSalva, fotoLeggi, fotoElimina, fotoSvuota } from './idb.js';
+import { BUILD } from './build.js';
 
 const VERSIONE = '1.0.0';
 const CHIAVE = 'dtd-stato-v1';
@@ -447,6 +448,22 @@ function vaiA(tab) {
   scrollTo({ top: 0 });
 }
 
+// Chiede al server il numero di build più recente: se è più alto di quello caricato, propone di aggiornare.
+async function controllaAggiornamento() {
+  try {
+    const r = await fetch(`app/build.js?check=${Date.now()}`, { cache: 'no-store' });
+    const n = Number((/BUILD\s*=\s*(\d+)/.exec(await r.text()) || [])[1]);
+    if (n > BUILD) {
+      const b = $('#aggiorna');
+      b.textContent = `Disponibile la build ${n}: tocca per aggiornare`; b.hidden = false;
+      b.onclick = async () => {
+        try { for (const k of await caches.keys()) await caches.delete(k); } catch { /* niente cache */ }
+        location.reload();
+      };
+    }
+  } catch { /* offline: nessun controllo */ }
+}
+
 function avvia() {
   $('#nuovo-layout').replaceChildren(...LAYOUTS.map((l) => h('option', { value: l.id }, l.nome)));
   $('#aggiungi').addEventListener('click', () => {
@@ -476,7 +493,9 @@ function avvia() {
   const handle = $('#handle'); handle.value = S.handle;
   handle.addEventListener('input', () => { S.handle = handle.value.trim(); persisti(); ridisegnaTutte(); aggiornaBrief(); });
   $('#elenco-template').replaceChildren(...LAYOUTS.map((l) => h('li', {}, h('b', {}, l.nome), ' — ', l.descrizione)));
-  $('#versione').textContent = `DICETIDICE Studio v${VERSIONE} · ${LAYOUTS.length} template`;
+  $('#versione').textContent = `DICETIDICE Studio v${VERSIONE} · ${LAYOUTS.length} template · build ${BUILD}`;
+  $('#build-num').textContent = `build ${BUILD}`;
+  controllaAggiornamento();
   $('#azzera').addEventListener('click', async () => {
     if (!confirm('Cancellare testi e foto e ricominciare da zero?')) return;
     try { localStorage.removeItem(CHIAVE); } catch { /* niente */ }
