@@ -19,7 +19,7 @@ Brand identity di DICETIDICE e **DICETIDICE Studio**, la web app (PWA) che crea 
 
 ## Come si usa
 1. **Crea:** scegli il formato (carosello, post, quadrato, cover reel), aggiungi le slide, scrivi i testi e scegli le foto dalla galleria. L'anteprima si aggiorna subito.
-2. **Salva le immagini:** apre il menu di condivisione del telefono (*Salva immagine* le manda in galleria). Oppure scarica uno zip.
+2. **Scarica le immagini:** salva i PNG nella cartella Download del telefono (compaiono anche in Galleria). **Condividi** apre invece il menu del telefono (WhatsApp, Telegram…). C'è anche lo zip.
 3. **Brief per Claude:** dalla stessa scheda ottieni il messaggio già ordinato da incollare in Claude Code, con l'opzione di far aggiungere le novità come nuovo template all'app.
 
 Testi e foto restano solo sul tuo telefono.
