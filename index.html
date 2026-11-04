@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DICETIDICE Studio</title>
+<meta name="description" content="Crea caroselli, post e cover con la brand identity di DICETIDICE.">
+<meta name="theme-color" content="#FED805">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dice Studio">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="assets/brand.css">
+<link rel="stylesheet" href="app/app.css">
+</head>
+<body>
+
+<header class="top">
+  <img src="assets/logo-dicetidice.png" alt="" width="52" height="52">
+  <div>
+    <h1>DICETIDICE Studio</h1>
+    <p id="sottotitolo">Crea caroselli e post con la tua brand identity</p>
+  </div>
+</header>
+
+<main>
+  <!-- CREA -->
+  <section id="tab-crea" class="tab attiva">
+    <div class="riga">
+      <label class="etichetta" for="formato">Cosa vuoi creare?</label>
+      <div id="formati" class="chips" role="radiogroup" aria-label="Formato"></div>
+    </div>
+
+    <div id="slides"></div>
+
+    <div class="azioni-fondo">
+      <div class="aggiungi">
+        <select id="nuovo-layout" aria-label="Tipo di nuova slide"></select>
+        <button id="aggiungi" class="btn sec" type="button">+ Aggiungi slide</button>
+      </div>
+      <button id="salva-tutte" class="btn" type="button">Salva le immagini</button>
+      <button id="salva-zip" class="btn sec" type="button">Scarica tutto in .zip</button>
+      <p class="nota">Le parti che lasci vuote mostrano un testo di esempio nell'anteprima, ma non finiscono nelle immagini salvate.</p>
+    </div>
+  </section>
+
+  <!-- BRIEF PER CLAUDE -->
+  <section id="tab-brief" class="tab">
+    <h2>Brief per Claude</h2>
+    <p class="lead">Quello che hai scritto nella scheda “Crea”, già in ordine, pronto da incollare in Claude Code. Claude lavora con la brand identity del repo, e se vuoi arricchisce anche questa app.</p>
+
+    <div class="card">
+      <h3>Note per slide (opzionali)</h3>
+      <div id="note-slide"></div>
+    </div>
+
+    <div class="card">
+      <label class="check"><input type="checkbox" id="aggiungi-template"> <span>Aggiungi le novità come <b>nuovo template</b> nell'app</span></label>
+      <div id="dati-template" hidden>
+        <label class="etichetta" for="nome-template">Nome del nuovo template</label>
+        <input id="nome-template" type="text" placeholder="Es. Classifica, Prima/Dopo, Foto a tutto schermo">
+        <label class="etichetta" for="descr-template">Come deve essere? (cosa cambia rispetto ai template esistenti)</label>
+        <textarea id="descr-template" rows="4" placeholder="Es. La foto occupa tutta la slide e il titolo sta sopra, su una fascia gialla."></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Il messaggio per Claude</h3>
+      <textarea id="testo-brief" rows="14" readonly></textarea>
+      <div class="azioni">
+        <button id="copia-brief" class="btn" type="button">Copia il brief</button>
+        <button id="condividi-brief" class="btn sec" type="button">Condividi il brief</button>
+        <button id="condividi-foto" class="btn sec" type="button">Condividi le foto numerate</button>
+      </div>
+      <p class="nota">Incolla il brief nella chat di Claude Code e allega le foto nello stesso ordine: “Condividi le foto numerate” le rinomina immagine-1, immagine-2… e le manda direttamente a Claude.</p>
+    </div>
+  </section>
+
+  <!-- IMPOSTAZIONI -->
+  <section id="tab-info" class="tab">
+    <h2>Impostazioni</h2>
+    <div class="card">
+      <label class="etichetta" for="handle">Il tuo handle (compare nel piè di pagina)</label>
+      <input id="handle" type="text" placeholder="@dicetidice">
+    </div>
+    <div class="card">
+      <h3>Installa l'app sul telefono</h3>
+      <p><b>iPhone:</b> apri la pagina in Safari, tocca Condividi, poi “Aggiungi a Home”.<br>
+      <b>Android:</b> apri la pagina in Chrome, menu ⋮, poi “Installa app”.</p>
+      <p class="nota">Dopo la prima apertura funziona anche senza connessione e si aggiorna da sola quando ci sono novità.</p>
+    </div>
+    <div class="card">
+      <h3>Template disponibili</h3>
+      <ul id="elenco-template"></ul>
+    </div>
+    <div class="card">
+      <h3>Dati</h3>
+      <p class="nota">Testi e foto restano solo su questo telefono.</p>
+      <button id="azzera" class="btn sec" type="button">Cancella tutto e ricomincia</button>
+      <p class="nota" id="versione"></p>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="Sezioni">
+  <button type="button" data-tab="crea" class="attiva">Crea</button>
+  <button type="button" data-tab="brief">Brief per Claude</button>
+  <button type="button" data-tab="info">Impostazioni</button>
+</nav>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="app/app.js"></script>
+</body>
+</html>
