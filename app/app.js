@@ -3,6 +3,7 @@ import { FORMATI, readBrand, temi, loadFonts } from './render.js';
 import { LAYOUTS, LAYOUT_BY_ID, renderSlide } from './layouts.js';
 import { zipStore } from './zip.js';
 import { fotoSalva, fotoLeggi, fotoElimina, fotoSvuota } from './idb.js';
+import { BUILD } from './build.js';
 
 const VERSIONE = '1.0.0';
 const CHIAVE = 'dtd-stato-v1';
@@ -176,7 +177,8 @@ function disegnaFormati() {
   }
   const multi = FORMATI[S.formato].multi;
   $('#aggiungi').disabled = !multi; $('#nuovo-layout').disabled = !multi;
-  $('#salva-tutte').textContent = S.slides.length > 1 ? 'Salva le immagini' : 'Salva l’immagine';
+  $('#scarica-tutte').textContent = S.slides.length > 1 ? 'Scarica le immagini' : 'Scarica l’immagine';
+  $('#condividi-tutte').textContent = S.slides.length > 1 ? 'Condividi le immagini' : 'Condividi l’immagine';
 }
 
 function cambiaFormato(id) {
@@ -274,7 +276,8 @@ function scheda(s, i) {
     h('div', { class: 'etichetta' }, 'Sfondo'),
     h('div', { class: 'chips' }, Object.entries(temi(brand)).map(([id, t]) => chipTema(s, id, t.nome))),
     h('div', { class: 'anteprima' }, canvas,
-      h('button', { class: 'btn sec', type: 'button', onclick: () => salvaSlide(s, i) }, 'Salva questa slide')),
+      h('button', { class: 'btn', type: 'button', onclick: () => scaricaSlide(s, i) }, 'Scarica questa slide'),
+      h('button', { class: 'btn sec', type: 'button', onclick: () => condividiSlide(s, i) }, 'Condividi questa slide')),
   );
 }
 
@@ -331,15 +334,29 @@ async function condividiOScarica(files) {
   return false;
 }
 
-async function salvaSlide(s, i) {
+const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Download diretto: il file finisce nella cartella Download del telefono (e da lì in Galleria)
+async function scaricaSlide(s, i) {
   const f = await fileSlide(s, i);
-  if (!(await condividiOScarica([f]))) { scarica(f, f.name); toast('Immagine scaricata'); }
+  scarica(f, f.name); toast('Immagine scaricata: la trovi nei Download');
 }
 
-async function salvaTutte() {
+async function scaricaTutte() {
   const files = await Promise.all(S.slides.map(fileSlide));
-  if (await condividiOScarica(files)) return;
-  await salvaZip(files);
+  for (const f of files) { scarica(f, f.name); await pausa(600); }
+  toast(files.length > 1 ? `${files.length} immagini scaricate: le trovi nei Download` : 'Immagine scaricata: la trovi nei Download');
+}
+
+// Condivisione: menu del telefono (WhatsApp, Telegram, Quick Share…)
+async function condividiSlide(s, i) {
+  const f = await fileSlide(s, i);
+  if (!(await condividiOScarica([f]))) toast('Condivisione non disponibile qui: usa “Scarica”');
+}
+
+async function condividiTutte() {
+  const files = await Promise.all(S.slides.map(fileSlide));
+  if (!(await condividiOScarica(files))) toast('Condivisione non disponibile qui: usa “Scarica le immagini”');
 }
 
 async function salvaZip(files) {
@@ -431,6 +448,22 @@ function vaiA(tab) {
   scrollTo({ top: 0 });
 }
 
+// Chiede al server il numero di build più recente: se è più alto di quello caricato, propone di aggiornare.
+async function controllaAggiornamento() {
+  try {
+    const r = await fetch(`app/build.js?check=${Date.now()}`, { cache: 'no-store' });
+    const n = Number((/BUILD\s*=\s*(\d+)/.exec(await r.text()) || [])[1]);
+    if (n > BUILD) {
+      const b = $('#aggiorna');
+      b.textContent = `Disponibile la build ${n}: tocca per aggiornare`; b.hidden = false;
+      b.onclick = async () => {
+        try { for (const k of await caches.keys()) await caches.delete(k); } catch { /* niente cache */ }
+        location.reload();
+      };
+    }
+  } catch { /* offline: nessun controllo */ }
+}
+
 function avvia() {
   $('#nuovo-layout').replaceChildren(...LAYOUTS.map((l) => h('option', { value: l.id }, l.nome)));
   $('#aggiungi').addEventListener('click', () => {
@@ -438,7 +471,8 @@ function avvia() {
     const s = nuovaSlide($('#nuovo-layout').value); S.slides.push(s); persisti(); disegnaTutto();
     $('#sl-' + s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-  $('#salva-tutte').addEventListener('click', salvaTutte);
+  $('#scarica-tutte').addEventListener('click', scaricaTutte);
+  $('#condividi-tutte').addEventListener('click', condividiTutte);
   $('#salva-zip').addEventListener('click', () => salvaZip());
 
   document.querySelectorAll('.tabs button').forEach((b) => b.addEventListener('click', () => vaiA(b.dataset.tab)));
@@ -459,7 +493,9 @@ function avvia() {
   const handle = $('#handle'); handle.value = S.handle;
   handle.addEventListener('input', () => { S.handle = handle.value.trim(); persisti(); ridisegnaTutte(); aggiornaBrief(); });
   $('#elenco-template').replaceChildren(...LAYOUTS.map((l) => h('li', {}, h('b', {}, l.nome), ' — ', l.descrizione)));
-  $('#versione').textContent = `DICETIDICE Studio v${VERSIONE} · ${LAYOUTS.length} template`;
+  $('#versione').textContent = `DICETIDICE Studio v${VERSIONE} · ${LAYOUTS.length} template · build ${BUILD}`;
+  $('#build-num').textContent = `build ${BUILD}`;
+  controllaAggiornamento();
   $('#azzera').addEventListener('click', async () => {
     if (!confirm('Cancellare testi e foto e ricominciare da zero?')) return;
     try { localStorage.removeItem(CHIAVE); } catch { /* niente */ }

@@ -41,9 +41,10 @@
         <select id="nuovo-layout" aria-label="Tipo di nuova slide"></select>
         <button id="aggiungi" class="btn sec" type="button">+ Aggiungi slide</button>
       </div>
-      <button id="salva-tutte" class="btn" type="button">Salva le immagini</button>
+      <button id="scarica-tutte" class="btn" type="button">Scarica le immagini</button>
+      <button id="condividi-tutte" class="btn sec" type="button">Condividi le immagini</button>
       <button id="salva-zip" class="btn sec" type="button">Scarica tutto in .zip</button>
-      <p class="nota">Le parti che lasci vuote mostrano un testo di esempio nell'anteprima, ma non finiscono nelle immagini salvate.</p>
+      <p class="nota"><b>Scarica</b> salva i file nella cartella Download del telefono (li trovi anche in Galleria). <b>Condividi</b> li manda a WhatsApp, Telegram e simili. Le parti che lasci vuote mostrano un testo di esempio nell'anteprima, ma non finiscono nelle immagini.</p>
     </div>
   </section>
 
@@ -104,6 +105,11 @@
     </div>
   </section>
 </main>
+
+<footer class="build">
+  <span id="build-num"></span>
+  <button id="aggiorna" type="button" hidden>Nuova versione: tocca per aggiornare</button>
+</footer>
 
 <nav class="tabs" aria-label="Sezioni">
   <button type="button" data-tab="crea" class="attiva">Crea</button>

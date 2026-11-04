@@ -3,7 +3,7 @@
 const CACHE = 'dicetidice-studio-v1';
 const FILE = [
   './', 'index.html', 'manifest.webmanifest',
-  'app/app.css', 'app/app.js', 'app/layouts.js', 'app/render.js', 'app/zip.js', 'app/idb.js',
+  'app/app.css', 'app/app.js', 'app/layouts.js', 'app/render.js', 'app/zip.js', 'app/idb.js', 'app/build.js',
   'assets/brand.css', 'assets/logo-dicetidice.png',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
   'fonts/PermanentMarker-400.ttf', 'fonts/Cinzel-700.ttf', 'fonts/Cinzel-900.ttf',
@@ -23,7 +23,9 @@ self.addEventListener('activate', (ev) => {
 
 self.addEventListener('fetch', (ev) => {
   const req = ev.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== location.origin) return;
+  if (url.searchParams.has('check')) return; // controllo aggiornamenti: sempre dalla rete
   ev.respondWith(
     caches.open(CACHE).then(async (cache) => {
       const hit = await cache.match(req, { ignoreSearch: true });
