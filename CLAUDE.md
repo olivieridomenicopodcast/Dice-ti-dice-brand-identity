@@ -13,6 +13,7 @@ Repo della brand identity di **DICETIDICE** (progetto nerd su giochi da tavolo d
 ## Struttura del repo
 - `index.html`, `app/`, `sw.js`, `manifest.webmanifest`, `icons/`: la PWA (si pubblica con GitHub Pages dalla radice del repo).
 - `app/layouts.js`: **catalogo dei template** (tipi di slide). `app/render.js`: primitive di disegno su canvas.
+- `vendor/heic-to.js` (+ licenza LGPL-3.0): libreria che converte le foto **HEIC** in JPEG (il browser Android non le legge). Si carica solo quando serve una foto HEIC e NON è nella lista `FILE` di `sw.js` (pesa 3 MB): finisce in cache al primo uso. La logica è in `app/app.js` (`preparaFoto`).
 - `assets/`: logo e `brand.css`. `templates/carosello.html`: versione HTML di riferimento del carosello. `export.js`: esporta i `.slide` di un HTML in PNG (Playwright).
 
 ## Quando Niky incolla un brief da DICETIDICE Studio

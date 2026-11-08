@@ -148,6 +148,43 @@ function dimenticaFoto(id) {
   fotoUrls.delete(id); fotoElimina(id);
 }
 
+/* ---------- foto HEIC (iPhone e alcuni telefoni): il browser Android non le legge, le converto in JPEG ---------- */
+
+let heicP;
+function caricaHeic() {
+  if (window.HeicTo) return Promise.resolve(window.HeicTo);
+  heicP ??= new Promise((ok, ko) => {
+    const sc = document.createElement('script');
+    sc.src = 'vendor/heic-to.js'; // libreria (3 MB) caricata solo quando serve
+    sc.onload = () => ok(window.HeicTo);
+    sc.onerror = () => { heicP = null; ko(new Error('HEIC_LIB')); };
+    document.head.append(sc);
+  });
+  return heicP;
+}
+
+async function leggibileDalBrowser(file) {
+  try { const b = await createImageBitmap(file); b.close?.(); return true; } catch { return false; }
+}
+
+async function sembraHeic(file) {
+  if (/\.(heic|heif)$/i.test(file.name) || /hei[cf]/i.test(file.type)) return true;
+  const b = new Uint8Array(await file.slice(0, 16).arrayBuffer());
+  const t = (i, n) => String.fromCharCode(...b.slice(i, i + n));
+  return t(4, 4) === 'ftyp' && /^(heic|heix|hevc|hevx|heim|heis|mif1|msf1)$/.test(t(8, 4));
+}
+
+// Restituisce un file che il browser sa leggere: jpg/png/webp restano come sono, le HEIC diventano JPEG
+async function preparaFoto(file) {
+  if (await leggibileDalBrowser(file)) return file;
+  if (!(await sembraHeic(file))) throw new Error('FORMATO');
+  const converti = await caricaHeic();
+  toast('Converto la foto HEIC, un attimo…');
+  let jpeg;
+  try { jpeg = await converti({ blob: file, type: 'image/jpeg', quality: 0.92 }); } catch { throw new Error('HEIC_CONV'); }
+  return new File([jpeg], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' });
+}
+
 const env = (preview) => ({ formato: S.formato, brand, logo, handle: S.handle || '@dicetidice', fotos, preview });
 
 /* ---------- anteprime ---------- */
@@ -226,14 +263,20 @@ function campoFoto(s) {
   };
 
   input.addEventListener('change', async () => {
-    const file = input.files?.[0]; if (!file) return;
+    const originale = input.files?.[0]; if (!originale) return;
     try {
+      const file = await preparaFoto(originale);
       const vecchia = s.fotoId; const id = uid();
       await fotoSalva(id, file);
       await registraFoto(id, file);
       s.fotoId = id; dimenticaFoto(vecchia);
       aggiorna(); modificata(s);
-    } catch { toast('Non riesco a leggere questa immagine'); }
+    } catch (e) {
+      toast({
+        HEIC_LIB: 'La foto è in formato HEIC: la prima volta serve la connessione per convertirla',
+        HEIC_CONV: 'Non riesco a convertire questa foto HEIC: prova a salvarla come JPG',
+      }[e?.message] || 'Non riesco a leggere questa immagine');
+    }
     input.value = '';
   });
   aggiorna();

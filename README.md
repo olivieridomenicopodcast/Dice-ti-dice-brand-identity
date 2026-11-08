@@ -22,4 +22,6 @@ Brand identity di DICETIDICE e **DICETIDICE Studio**, la web app (PWA) che crea 
 2. **Scarica le immagini:** salva i PNG nella cartella Download del telefono (compaiono anche in Galleria). **Condividi** apre invece il menu del telefono (WhatsApp, Telegram…). C'è anche lo zip.
 3. **Brief per Claude:** dalla stessa scheda ottieni il messaggio già ordinato da incollare in Claude Code, con l'opzione di far aggiungere le novità come nuovo template all'app.
 
+Le foto in formato **HEIC** vengono convertite in JPEG in automatico (la prima volta serve la connessione per scaricare il convertitore, poi resta in cache).
+
 Testi e foto restano solo sul tuo telefono.
